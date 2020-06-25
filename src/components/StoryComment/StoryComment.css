@@ -1,0 +1,30 @@
+.comment-detailed-section {
+    display: block;
+}
+
+.comment-detailed-section .comment-detailed-header {
+    display: block;
+    width: 100%;
+    background-color: #F45A16;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+.comment-detailed-section .comment-detailed-header p {
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.comment-detailed-section .comment-detailed-header span.w100 {
+    display: inline-block;
+    width: 70px;
+    font-weight: bold;
+}
+
+.comment-detailed-body {
+    padding: 10px 0;
+}
+
+.comment-detailed-circle {
+    margin: 50px auto 15px;
+}

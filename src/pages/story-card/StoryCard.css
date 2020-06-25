@@ -26,6 +26,7 @@
 .story-card .story-title {
     font-size: 20px;
     font-weight: bold;
+    color: #000000;
 }
 
 .story-card .story-author {
@@ -39,6 +40,19 @@
     color: #A0A0A0;
     word-break: break-word;
     margin: 0;
+}
+
+.story-card .story-icons-block {
+    display: inline;
+    margin-top: 10px;
+}
+
+.story-card .story-icons-block > img:first-child {
+    margin-top: 6px;
+}
+
+.story-card .story-icons-block > img:last-child {
+    margin-left: 10px;
 }
 
 .story-card .story-points-circle {
@@ -68,6 +82,7 @@
     display: block;
     width: 100%;
     background-color: #d8d8d8;
+    padding: 5px;
     margin-top: 10px;
 }
 

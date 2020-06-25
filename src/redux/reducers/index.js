@@ -4,5 +4,5 @@ import {hackerReducer}  from './TopStoriesReducer/TopStories'
 
 export default combineReducers({
   //stories:hackerReducer,
-    hackerReducer,
+    stories:hackerReducer,
 });
