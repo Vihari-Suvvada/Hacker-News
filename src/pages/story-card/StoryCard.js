@@ -11,10 +11,10 @@ const StoryCardData = (props) => {
   const {data: {title, author,objectID, url, num_comments}, points, index, hideStory, voteStory} = props;
 
   return (
-      <Col xs={12}>
-        <Link to={`/TopStories/id=${objectID}`}>
-          <div className="story-card">
-            <div className={'story-card-left'}>
+    <Col xs={12}>
+        <div className="story-card">
+          <div className={'story-card-left'}>
+            <Link to={`/TopStories/id=${objectID}`}>
               <p className="story-title">{title === null ?
                   'Sample Title' :
                   title}</p>
@@ -22,33 +22,39 @@ const StoryCardData = (props) => {
                   'Hacker News' :
                   author}</p>
               <p className="story-url">{url === null ? 'Hacker News' : url}</p>
-              <div className="story-icons-block">
-                <img
-                    src={hideIcon}
-                    alt={'hide'}
-                    width={30}
-                    height={30}
-                    onClick={() => hideStory(index)}
-                />
-                <img
-                    src={likeIcon}
-                    alt={'Like'}
-                    width={30}
-                    height={30}
-                    onClick={() => voteStory(index)}
-                />
-              </div>
-            </div>
-            <div className={'story-card-right'}>
-              <div className="story-points-circle">
-                <p>{points}</p>
-              </div>
-              <div className="story-comments-block">
-                <p className="story-comments-count">{num_comments}</p>
-              </div>
+            </Link>
+            <div className="story-icons-block">
+              <img
+                  src={hideIcon}
+                  alt={'hide'}
+                  width={30}
+                  height={30}
+                  onClick={() => hideStory(index)}
+              />
+              <img
+                  src={likeIcon}
+                  alt={'Like'}
+                  width={30}
+                  height={30}
+                  onClick={() => voteStory(index)}
+              />
             </div>
           </div>
-        </Link>
+          <div className={'story-card-right'}>
+          <Link to={`/TopStories/id=${objectID}`}>
+            <div className="story-points-circle">
+            
+              <p>{points}</p>
+            
+            </div>
+            <div className="story-comments-block">
+            
+              <p className="story-comments-count">{num_comments}</p>
+            
+            </div>
+           </Link>
+          </div>
+        </div>
         <hr className={{padding: 0, margin: 0}}/>
       </Col>
   );

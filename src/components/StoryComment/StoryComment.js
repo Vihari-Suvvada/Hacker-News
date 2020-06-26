@@ -5,9 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
-//import './Comment.css';
 import './StoryComment.css';
 import {Comment} from '../../pages/comment/Comment';
+import {Link} from 'react-router-dom';
 
 
 export default class PostComment extends React.Component {
@@ -37,7 +37,7 @@ export default class PostComment extends React.Component {
           console.log(errors);
         }).finally(() => this.setState({loading: false}));
   };
-
+ 
   render() {
     const {loading, storyData} = this.state;
 
@@ -62,7 +62,8 @@ export default class PostComment extends React.Component {
             <Container>
               <Row>
                 <Col xs={12}>
-                  <h4>{title}</h4>
+                <Link to="/" style={{ color: "#ffffff" }}>{"< Back"}</Link>
+                  <h4 style={{ marginTop: 10 }}>{title}</h4>
                   <br/>
                   <Row>
                     <Col xs={2}>

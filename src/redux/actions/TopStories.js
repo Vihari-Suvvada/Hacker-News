@@ -12,11 +12,14 @@ import  {
 export const getTopStoriesData = (type) =>{
   return async (dispatch, getState) => {
     const {pageNumber, storyData} = getState().stories;
+    // 0, {0[1,2,.....20],1[1,2,...]}
     console.log('starting storyData value is:',storyData);
     console.log('starting pageNumber value is:',pageNumber);
     const getPageNumber = type === undefined ?
         0 :
         type === 'next' ? pageNumber + 1 : pageNumber - 1;
+
+
         console.log('Changing pageNumber value is:',getPageNumber);
     if (storyData.hasOwnProperty(getPageNumber)) {
       if (type === undefined) {
@@ -35,6 +38,7 @@ export const getTopStoriesData = (type) =>{
       axios.get(`https://hn.algolia.com/api/v1/search?page=${getPageNumber}`).
           then(function(response) {
             const {hits} = response.data;
+          
             const updatedHits = hits.map(data => {
               data.isVisible = true;
               return data;
@@ -42,18 +46,20 @@ export const getTopStoriesData = (type) =>{
             console.log('updated hits is:',updatedHits)
             console.log('storyData is:',storyData)
  
-            let arr = storyData;
+            let arr = storyData;//{0[],1[]}
             console.log('storyData copy is:',arr)
 
             arr[getPageNumber] = updatedHits;
+            //arr o/p: {0[1,...], 1[1,2.....],2[]}
             console.log('storyData pagenumber is:',arr[getPageNumber])
             console.log('pagenumber is:',pageNumber)
             console.log('getpagenumber is:',getPageNumber)
-
+           //
             if (type === undefined) {
               dispatch({
                 type: TOP_STORIES_DATA,
                 payload: {
+                  //pageNumber: getPageNumber,
                   storyData: arr,
                   currentPageStoryData: updatedHits,
                 },
@@ -81,19 +87,16 @@ export const getTopStoriesData = (type) =>{
 };
 export const hideStory = (index) => {
   return async (dispatch, getState) => {
-    const {pageNumber, storyData, currentPageStoryData} = getState().stories;
+    const {pageNumber, storyData} = getState().stories;
 
     let tempStoryData = {...storyData};
-    let tempCurrentPageStoryData = [...currentPageStoryData];
-
     tempStoryData[pageNumber][index].isVisible = false;
-    tempCurrentPageStoryData[index].isVisible = false;
 
     dispatch({
       type: STORY_HIDE_STATUS,
       payload: {
         storyData: tempStoryData,
-        currentPageStoryData: tempCurrentPageStoryData,
+        currentPageStoryData: tempStoryData[pageNumber],
       },
     });
   };
@@ -101,19 +104,16 @@ export const hideStory = (index) => {
 
 export const voteStory = (index) => {
   return async (dispatch, getState) => {
-    const {pageNumber, storyData, currentPageStoryData} = getState().stories;
+    const {pageNumber, storyData} = getState().stories;
 
     let tempStoryData = {...storyData};
-    let tempCurrentPageStoryData = [...currentPageStoryData];
-
     tempStoryData[pageNumber][index].points += 1;
-    tempCurrentPageStoryData[index].points += 1;
 
     dispatch({
       type: STORY_VOTES,
       payload: {
         storyData: tempStoryData,
-        currentPageStoryData: tempCurrentPageStoryData,
+        currentPageStoryData: tempStoryData[pageNumber],
       },
     });
   };

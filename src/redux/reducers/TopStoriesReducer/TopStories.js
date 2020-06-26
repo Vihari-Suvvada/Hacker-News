@@ -9,6 +9,10 @@ import {
 const initialState = {
   pageNumber: 0,
   storyData: {},
+  /*
+  {0[],1[],2[],...........49[]}
+  
+  */
   currentPageStoryData: [],
 };
 export const hackerReducer = (state = initialState, action) => {
