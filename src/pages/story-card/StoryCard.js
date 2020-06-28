@@ -13,6 +13,7 @@ const StoryCardData = (props) => {
   return (
     <Col xs={12}>
         <div className="story-card">
+
           <div className={'story-card-left'}>
             <Link to={`/TopStories/id=${objectID}`}>
               <p className="story-title">{title === null ?
@@ -54,6 +55,7 @@ const StoryCardData = (props) => {
             </div>
            </Link>
           </div>
+          
         </div>
         <hr className={{padding: 0, margin: 0}}/>
       </Col>

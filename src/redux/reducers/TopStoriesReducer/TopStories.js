@@ -4,9 +4,11 @@ import {
   NEXT_PREV_PAGE_STORY_DATA,
   STORY_DATA_WITH_PAGE_NUMBER,
   STORY_HIDE_STATUS,
-  STORY_VOTES} from '../../actionconstants/HackerNewsConstants';
+  STORY_VOTES,
+  LOADING_STATUS} from '../../actionconstants/HackerNewsConstants';
 
 const initialState = {
+  //loading: true,
   pageNumber: 0,
   storyData: {},
   /*
@@ -14,6 +16,7 @@ const initialState = {
   
   */
   currentPageStoryData: [],
+  loading:false,
 };
 export const hackerReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,6 +25,7 @@ export const hackerReducer = (state = initialState, action) => {
         ...state,
         storyData: action.payload.storyData,
         currentPageStoryData: action.payload.currentPageStoryData,
+        loading: false,
       };
     case STORY_DATA_WITH_PAGE_NUMBER:
       return {
@@ -29,17 +33,20 @@ export const hackerReducer = (state = initialState, action) => {
         storyData: action.payload.storyData,
         currentPageStoryData: action.payload.currentPageStoryData,
         pageNumber: action.payload.pageNumber,
+        loading: false,
       };
     case CURRENT_PAGE_STORY_DATA:
       return {
         ...state,
         currentPageStoryData: action.payload,
+        loading: false,
       };
     case NEXT_PREV_PAGE_STORY_DATA:
       return {
         ...state,
         currentPageStoryData: action.payload.currentPageStoryData,
         pageNumber: action.payload.pageNumber,
+        loading: false,
       };
     case STORY_HIDE_STATUS:
     case STORY_VOTES:
@@ -48,6 +55,12 @@ export const hackerReducer = (state = initialState, action) => {
         storyData: action.payload.storyData,
         currentPageStoryData: action.payload.currentPageStoryData,
       };
+      case LOADING_STATUS: {
+        return {
+          ...state,
+          loading: action.payload
+        }
+      }
     default:
       return state;
   }

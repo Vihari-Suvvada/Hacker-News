@@ -4,3 +4,4 @@ export const CURRENT_PAGE_STORY_DATA = "current_page_story_data";
 export const NEXT_PREV_PAGE_STORY_DATA = "next_prev_page_story_data";
 export const STORY_HIDE_STATUS = "story_hide_status";
 export const STORY_VOTES = "story_votes";
+export const LOADING_STATUS = "loading_status";

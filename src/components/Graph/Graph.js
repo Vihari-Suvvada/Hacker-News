@@ -11,8 +11,10 @@ const GraphData = (props) => {
   let yAxisData = [];
 
   props.currentPageStoryData.forEach(story => {
-    xAxisData.push(story.objectID);
-    yAxisData.push(story.points);
+    if (story.title !== null && story.title !== '') {
+      xAxisData.push(story.objectID);
+      yAxisData.push(story.points);
+    }
   });
 
   const option = {
@@ -25,7 +27,7 @@ const GraphData = (props) => {
     },
     xAxis: {
       type: 'category',
-      boundaryGap: 2,
+      boundaryGap: 0,
       axisLabel: {
         show: true,
         rotate: 90,
@@ -43,11 +45,12 @@ const GraphData = (props) => {
         name: 'Hacker-News',
         type: 'line',
         lineStyle: {
-          width: 4,
+          width: 1,
         },
         data: yAxisData,
         itemStyle: {
-          color: '#00B4DB',
+         // color: '#00B4DB',
+            color: 'red',
         },
       },
     ],
